@@ -1,0 +1,6 @@
+C:\Users\dakir\source\repos\ChatProjekt\NetzwerkLib\bin\Debug\NetzwerkLib.dll
+C:\Users\dakir\source\repos\ChatProjekt\NetzwerkLib\bin\Debug\NetzwerkLib.pdb
+C:\Users\dakir\source\repos\ChatProjekt\NetzwerkLib\obj\Debug\NetzwerkLib.csprojResolveAssemblyReference.cache
+C:\Users\dakir\source\repos\ChatProjekt\NetzwerkLib\obj\Debug\NetzwerkLib.csproj.CoreCompileInputs.cache
+C:\Users\dakir\source\repos\ChatProjekt\NetzwerkLib\obj\Debug\NetzwerkLib.dll
+C:\Users\dakir\source\repos\ChatProjekt\NetzwerkLib\obj\Debug\NetzwerkLib.pdb

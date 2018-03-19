@@ -1,0 +1,9 @@
+C:\Users\dakir\source\repos\ChatProjekt\Console Server\obj\Debug\Console Server.csprojResolveAssemblyReference.cache
+C:\Users\dakir\source\repos\ChatProjekt\Console Server\obj\Debug\Console Server.csproj.CoreCompileInputs.cache
+C:\Users\dakir\source\repos\ChatProjekt\Console Server\bin\Debug\Console Server.exe.config
+C:\Users\dakir\source\repos\ChatProjekt\Console Server\bin\Debug\Console Server.exe
+C:\Users\dakir\source\repos\ChatProjekt\Console Server\bin\Debug\Console Server.pdb
+C:\Users\dakir\source\repos\ChatProjekt\Console Server\obj\Debug\Console Server.exe
+C:\Users\dakir\source\repos\ChatProjekt\Console Server\obj\Debug\Console Server.pdb
+C:\Users\dakir\source\repos\ChatProjekt\Console Server\bin\Debug\NetzwerkLib.dll
+C:\Users\dakir\source\repos\ChatProjekt\Console Server\bin\Debug\NetzwerkLib.pdb
