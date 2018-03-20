@@ -14,6 +14,12 @@ namespace NetzwerkLib
     public class Server
     {
         Thread ListenThread;
+        bool is_running = false;
+
+        void Con(string str)
+        {
+            Console.WriteLine("[SERVER] " + str);
+        }
 
         private int timeOut;
         public int TimeOut
@@ -52,7 +58,7 @@ namespace NetzwerkLib
             ListenSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
             pParser.SetAcceptedCommands(new List<Commands>() { Commands.SendMsg, Commands.SendPMsg, Commands.SetName, Commands.Disconnect});
-            TimeOut = 5;
+            TimeOut = 15;
         }
         public void Start(int MaxClients, IPEndPoint Endpoint = null)
         {
@@ -71,14 +77,25 @@ namespace NetzwerkLib
                 ListenThread = new Thread(start);
                 ListenThread.IsBackground = true;
                 ListenThread.Start();
+                is_running = true;
             }
             catch(Exception e)
             {
-                Console.WriteLine("Start: " + e);
+                if (e.GetHashCode() == 4094363) { 
+                    Con("Start: Der Zugriff auf einen Socket war aufgrund der Zugriffsrechte des Sockets unzulässig (4094363)");
+                }
+                else if(e.GetHashCode() == 36849274)
+                {
+                    Con("Start: Der Zugriff auf einen Socket war aufgrund der Zugriffsrechte des Sockets unzulässig (36849274)");
+                }
+                else {
+                    Con("Start: " + e);
+                }
             }
         }
         public void Stop()
         {
+            is_running = false;
             Socket[] Sockets = ConnectedSockets.Values.ToArray();
             ConnectedSockets.Clear();
 
@@ -94,6 +111,17 @@ namespace NetzwerkLib
             ListenSocket = null;
         }
 
+        public void SendInfo( string str )
+        {
+            Con(str);
+
+            Packet nP = new Packet();
+            nP.SetCommand(Commands.SendMsg);
+            nP.Setdata(str);
+
+            SendToAll(nP);
+        }
+
         public void AcceptSocket()
         {
             bool working = true;
@@ -107,26 +135,31 @@ namespace NetzwerkLib
 
                         lock (this)
                         {
-                            Packet nP = new Packet();
-                            nP.SetCommand(Commands.GetName);
-                            nP.Setdata("");
+                            if (is_running)
+                            {
+                                Packet nP = new Packet();
+                                nP.SetCommand(Commands.GetName);
+                                nP.Setdata("");
 
-                            nP.Send(tempClientSocket);
+                                nP.Send(tempClientSocket);
 
-                            Packet ClientName = Packet.Receive(tempClientSocket, TimeOut);
+                                Packet ClientName = Packet.Receive(tempClientSocket, TimeOut);
 
-                            string newClient = ASCIIEncoding.ASCII.GetString(ClientName.Data);
-                            ConnectedSockets.Add(newClient, tempClientSocket);
+                                string newClient = ASCIIEncoding.ASCII.GetString(ClientName.Data);
+                                ConnectedSockets.Add(newClient, tempClientSocket);
+
+                                SendInfo(newClient + " ist dem Chat beigetreten.");
+                            }
                         }
                     }
                     catch(Exception e)
                     {
-                        Console.WriteLine("AcceptSocket(): " + e);
+                        Con("AcceptSocket(): " + e);
                         working = false;
                     }
-                    Thread.Sleep(5);
+                    Thread.Sleep(40);
                 }
-                Thread.Sleep(5);
+                Thread.Sleep(40);
             }
         }
 

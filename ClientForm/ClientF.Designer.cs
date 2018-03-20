@@ -90,7 +90,7 @@
             this.tb_port.Name = "tb_port";
             this.tb_port.Size = new System.Drawing.Size(120, 23);
             this.tb_port.TabIndex = 4;
-            this.tb_port.Text = "1234";
+            this.tb_port.Text = "1000";
             // 
             // tb_name
             // 
@@ -103,7 +103,7 @@
             // 
             // tb_chat
             // 
-            this.tb_chat.BackColor = System.Drawing.Color.Gray;
+            this.tb_chat.BackColor = System.Drawing.Color.LightGray;
             this.tb_chat.Location = new System.Drawing.Point(12, 67);
             this.tb_chat.Name = "tb_chat";
             this.tb_chat.Size = new System.Drawing.Size(560, 453);

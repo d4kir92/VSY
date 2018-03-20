@@ -4,3 +4,6 @@ C:\Users\dakir\source\repos\ChatProjekt\NetzwerkLib\obj\Debug\NetzwerkLib.csproj
 C:\Users\dakir\source\repos\ChatProjekt\NetzwerkLib\obj\Debug\NetzwerkLib.csproj.CoreCompileInputs.cache
 C:\Users\dakir\source\repos\ChatProjekt\NetzwerkLib\obj\Debug\NetzwerkLib.dll
 C:\Users\dakir\source\repos\ChatProjekt\NetzwerkLib\obj\Debug\NetzwerkLib.pdb
+C:\Users\dakir\source\repos\ChatProjekt\NetzwerkLib\bin\Debug\MySql.Data.dll
+C:\Users\dakir\source\repos\ChatProjekt\NetzwerkLib\bin\Debug\MySql.Data.xml
+C:\Users\dakir\source\repos\ChatProjekt\NetzwerkLib\obj\Debug\NetzwerkLib.csproj.CopyComplete

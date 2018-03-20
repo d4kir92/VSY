@@ -20,9 +20,9 @@ namespace ClientForm
         Client client;
         bool running = false;
 
-        void con(string str)
+        void Con(string str)
         {
-            Console.WriteLine("[CLIENT] " + str);
+            Console.WriteLine("[CLIENT-FORM] " + str);
         }
 
         public ClientF()
@@ -39,8 +39,11 @@ namespace ClientForm
         private void GetMsg( byte[] Data )
         {
             string text = ASCIIEncoding.ASCII.GetString(Data);
-            Console.WriteLine(text);
-            tb_chat.AppendText(Environment.NewLine + text);
+            string cl_name = tb_name.Text;
+            Con(cl_name);
+            text = text.Replace(cl_name, "Du");
+            Con(text);
+            tb_chat.AppendText(text + Environment.NewLine);
         }
 
         private void btn_action_Click(object sender, EventArgs e)
@@ -84,7 +87,7 @@ namespace ClientForm
                 {
                     btn_action.Text = "Verbinden";
                     label_status.Text = "Server offline, retry!";
-                    con("EXCEPTION: " + ex.ToString());
+                    Con("EXCEPTION: " + ex.ToString());
                     running = false;
                 }
             }

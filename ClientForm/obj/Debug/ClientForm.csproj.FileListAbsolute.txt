@@ -10,3 +10,6 @@ C:\Users\dakir\source\repos\ChatProjekt\ClientForm\bin\Debug\NetzwerkLib.dll
 C:\Users\dakir\source\repos\ChatProjekt\ClientForm\bin\Debug\NetzwerkLib.pdb
 C:\Users\dakir\source\repos\ChatProjekt\ClientForm\obj\Debug\ClientForm.csprojResolveAssemblyReference.cache
 C:\Users\dakir\source\repos\ChatProjekt\ClientForm\obj\Debug\ClientForm.ClientF.resources
+C:\Users\dakir\source\repos\ChatProjekt\ClientForm\bin\Debug\MySql.Data.dll
+C:\Users\dakir\source\repos\ChatProjekt\ClientForm\bin\Debug\MySql.Data.xml
+C:\Users\dakir\source\repos\ChatProjekt\ClientForm\obj\Debug\ClientForm.csproj.CopyComplete

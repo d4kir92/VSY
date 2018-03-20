@@ -14,6 +14,11 @@ namespace NetzwerkLib
 {
     public class Packet
     {
+        void Con(string str)
+        {
+            Console.WriteLine("[PACKET] " + str);
+        }
+
         uint size;
         public uint Size
         {
@@ -96,11 +101,15 @@ namespace NetzwerkLib
                     tempbuffer[i - 4] = buffer[i];
                 }
                 newPacket.data = tempbuffer;
+
+                newPacket.Con("Receive() "+ASCIIEncoding.ASCII.GetString(newPacket.data));
+
                 return newPacket;
             }
             catch(Exception e)
             {
                 Packet p = new Packet();
+                p.Con("Receive() " + "[Keine Daten]");
                 p.SetCommand(Commands.None);
                 return p;
             }

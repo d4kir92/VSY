@@ -31,7 +31,7 @@ namespace NetzwerkLib
         public Client()
         {
             pParser.SetAcceptedCommands(new List<Commands>() { Commands.SendMsg, Commands.SendPMsg, Commands.GetName, Commands.Disconnect });
-            TimeOut = 5;
+            TimeOut = 15;
         }
         public void Reset()
         {

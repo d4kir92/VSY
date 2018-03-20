@@ -10,3 +10,6 @@ C:\Users\dakir\source\repos\ChatProjekt\ChatProjekt\obj\Debug\ChatProjekt.exe
 C:\Users\dakir\source\repos\ChatProjekt\ChatProjekt\obj\Debug\ChatProjekt.pdb
 C:\Users\dakir\source\repos\ChatProjekt\ChatProjekt\obj\Debug\ChatProjekt.ServerF.resources
 C:\Users\dakir\source\repos\ChatProjekt\ChatProjekt\obj\Debug\ServerForm.csprojResolveAssemblyReference.cache
+C:\Users\dakir\source\repos\ChatProjekt\ChatProjekt\obj\Debug\ServerForm.csproj.CopyComplete
+C:\Users\dakir\source\repos\ChatProjekt\ChatProjekt\bin\Debug\MySql.Data.dll
+C:\Users\dakir\source\repos\ChatProjekt\ChatProjekt\bin\Debug\MySql.Data.xml
