@@ -41,13 +41,17 @@
             this.label_ip = new System.Windows.Forms.Label();
             this.label_port = new System.Windows.Forms.Label();
             this.label_name = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_action
             // 
-            this.btn_action.Location = new System.Drawing.Point(390, 25);
+            this.btn_action.Location = new System.Drawing.Point(6, 61);
             this.btn_action.Name = "btn_action";
-            this.btn_action.Size = new System.Drawing.Size(120, 23);
+            this.btn_action.Size = new System.Drawing.Size(246, 23);
             this.btn_action.TabIndex = 0;
             this.btn_action.Text = "ACTION";
             this.btn_action.UseVisualStyleBackColor = true;
@@ -55,6 +59,7 @@
             // 
             // btn_send
             // 
+            this.btn_send.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_send.Location = new System.Drawing.Point(497, 526);
             this.btn_send.Name = "btn_send";
             this.btn_send.Size = new System.Drawing.Size(75, 23);
@@ -65,6 +70,8 @@
             // 
             // tb_write
             // 
+            this.tb_write.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tb_write.Location = new System.Drawing.Point(12, 526);
             this.tb_write.Multiline = false;
             this.tb_write.Name = "tb_write";
@@ -76,7 +83,7 @@
             // 
             // tb_ip
             // 
-            this.tb_ip.Location = new System.Drawing.Point(12, 25);
+            this.tb_ip.Location = new System.Drawing.Point(6, 32);
             this.tb_ip.Multiline = false;
             this.tb_ip.Name = "tb_ip";
             this.tb_ip.Size = new System.Drawing.Size(120, 23);
@@ -85,7 +92,7 @@
             // 
             // tb_port
             // 
-            this.tb_port.Location = new System.Drawing.Point(138, 25);
+            this.tb_port.Location = new System.Drawing.Point(132, 32);
             this.tb_port.Multiline = false;
             this.tb_port.Name = "tb_port";
             this.tb_port.Size = new System.Drawing.Size(120, 23);
@@ -94,7 +101,7 @@
             // 
             // tb_name
             // 
-            this.tb_name.Location = new System.Drawing.Point(264, 25);
+            this.tb_name.Location = new System.Drawing.Point(9, 32);
             this.tb_name.Multiline = false;
             this.tb_name.Name = "tb_name";
             this.tb_name.Size = new System.Drawing.Size(120, 23);
@@ -103,17 +110,20 @@
             // 
             // tb_chat
             // 
+            this.tb_chat.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tb_chat.BackColor = System.Drawing.Color.LightGray;
-            this.tb_chat.Location = new System.Drawing.Point(12, 67);
+            this.tb_chat.Location = new System.Drawing.Point(12, 125);
             this.tb_chat.Name = "tb_chat";
-            this.tb_chat.Size = new System.Drawing.Size(560, 453);
+            this.tb_chat.Size = new System.Drawing.Size(560, 395);
             this.tb_chat.TabIndex = 6;
             this.tb_chat.Text = "";
             // 
             // label_status
             // 
             this.label_status.AutoSize = true;
-            this.label_status.Location = new System.Drawing.Point(12, 51);
+            this.label_status.Location = new System.Drawing.Point(6, 87);
             this.label_status.Name = "label_status";
             this.label_status.Size = new System.Drawing.Size(50, 13);
             this.label_status.TabIndex = 7;
@@ -127,7 +137,7 @@
             // label_ip
             // 
             this.label_ip.AutoSize = true;
-            this.label_ip.Location = new System.Drawing.Point(12, 9);
+            this.label_ip.Location = new System.Drawing.Point(6, 16);
             this.label_ip.Name = "label_ip";
             this.label_ip.Size = new System.Drawing.Size(17, 13);
             this.label_ip.TabIndex = 8;
@@ -136,7 +146,7 @@
             // label_port
             // 
             this.label_port.AutoSize = true;
-            this.label_port.Location = new System.Drawing.Point(138, 9);
+            this.label_port.Location = new System.Drawing.Point(129, 16);
             this.label_port.Name = "label_port";
             this.label_port.Size = new System.Drawing.Size(37, 13);
             this.label_port.TabIndex = 9;
@@ -145,11 +155,38 @@
             // label_name
             // 
             this.label_name.AutoSize = true;
-            this.label_name.Location = new System.Drawing.Point(264, 9);
+            this.label_name.Location = new System.Drawing.Point(6, 16);
             this.label_name.Name = "label_name";
             this.label_name.Size = new System.Drawing.Size(35, 13);
             this.label_name.TabIndex = 10;
             this.label_name.Text = "Name";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.groupBox2);
+            this.groupBox1.Controls.Add(this.label_status);
+            this.groupBox1.Controls.Add(this.tb_ip);
+            this.groupBox1.Controls.Add(this.label_ip);
+            this.groupBox1.Controls.Add(this.label_port);
+            this.groupBox1.Controls.Add(this.tb_port);
+            this.groupBox1.Controls.Add(this.btn_action);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(398, 107);
+            this.groupBox1.TabIndex = 11;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Server";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.tb_name);
+            this.groupBox2.Controls.Add(this.label_name);
+            this.groupBox2.Location = new System.Drawing.Point(258, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(140, 107);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Du";
             // 
             // ClientF
             // 
@@ -157,22 +194,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(584, 561);
-            this.Controls.Add(this.label_name);
-            this.Controls.Add(this.label_port);
-            this.Controls.Add(this.label_ip);
-            this.Controls.Add(this.label_status);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tb_chat);
-            this.Controls.Add(this.tb_name);
-            this.Controls.Add(this.tb_port);
-            this.Controls.Add(this.tb_ip);
             this.Controls.Add(this.tb_write);
             this.Controls.Add(this.btn_send);
-            this.Controls.Add(this.btn_action);
             this.Name = "ClientF";
             this.Text = "Client";
             this.Load += new System.EventHandler(this.Client_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -190,6 +223,8 @@
         private System.Windows.Forms.Label label_ip;
         private System.Windows.Forms.Label label_port;
         private System.Windows.Forms.Label label_name;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
 

@@ -36,6 +36,7 @@ namespace ChatProjekt
             label_sv_status.Text = "Bereit";
             label_db_status.Text = "Bereit";
             btn_action.Text = "Starten";
+            btn_action.BackColor = Color.Green;
         }
 
         private void GetMsg(byte[] Data)
@@ -52,13 +53,25 @@ namespace ChatProjekt
 
         public bool is_reachable(IPAddress ip, int port)
         {
-            Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            //Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             try
             {
+                Client client = new Client();
                 IPEndPoint ipe = new IPEndPoint(ip, port);
-                sock.Connect(ipe);
-                sock.Dispose();
-                sock.Close();
+                client.Connect(ipe);
+                Packet antwort = client.Receive();
+                if (antwort.Command == Commands.GetName)
+                {
+                    string name = tb_sv_ip.Text + nud_sv_port.Value;
+
+                    Packet nP = new Packet();
+                    nP.SetCommand(Commands.SetName);
+                    nP.Setdata(name);
+
+                    client.Send(nP);
+                }
+
+                client.Disconnect(false);
                 return true;
             }
             catch(Exception e)
@@ -73,89 +86,114 @@ namespace ChatProjekt
             {
                 running = !running;
 
-                // Verbindung zur Datenbank
-                db = new Datenbank();
+                label_sv_status.Text = "Server am hochfahren";
+                label_db_status.Text = "Server mit Datenbank verbinden";
+                btn_action.Text = "...";
+                btn_action.BackColor = Color.Yellow;
 
-                string host = tb_db_host.Text;
-                string datenbank = tb_db_database.Text;
-                string userid = tb_db_userid.Text;
-                string password = tb_db_password.Text;
-
-                db.DB_Connect(host, datenbank, userid, password);
-
-                // Gucken ob Server vorhanden sind
-                db.DB_CREATE_DATABASE("test");
-                
-                // Server informationen
-                IPAddress ip = IPAddress.Parse(tb_sv_ip.Text);
-                int port = (int)nud_sv_port.Value;
-                int mc = (int)nud_sv_max_clients.Value;
-
-                //db.DB_CREATE_TABLE("vsy_servers", "uid int not null auto_increment primary key, IP TEXT, PORT INT");
-                //db.DB_INSERT_INTO("vsy_servers", "IP, PORT", "'127.0.0.1', '1234'");
-                /*Dictionary<int, string> servers = db.DB_Select("vsy_servers", "*", "");
-                foreach(KeyValuePair<int, string> server in servers)
+                try
                 {
-                    Con(server.Value);
-                }*/
+                    // Verbindung zur Datenbank
+                    db = new Datenbank();
 
-                int range = (int)nud_sv_range.Value;
-                int new_port = port;
-                bool found = false;
-                for (int new_p = port; new_p < port+range; new_p++)
-                {
-                    //Con("i: " + i + " Port: " + new_p);
-                    DataTable result = db.DB_Select("vsy_servers", "*", "PORT = '" + new_p + "'");
+                    string host = tb_db_host.Text;
+                    string datenbank = tb_db_database.Text;
+                    string userid = tb_db_userid.Text;
+                    string password = tb_db_password.Text;
 
-                    if (result != null){
-                        foreach (DataRow row in result.Rows)
-                        {
-                            for (int i = 0; i < row.ItemArray.Length; i++)
-                            {
-                                Con(row.ItemArray[i].ToString());   
-                            }
-                        }
-                        Con("Server in Datenbank gefunden!");
-
-                        if (is_reachable(ip, new_p))
-                        {
-                            Con("Server ist erreichbar.");
-                        }
-                        else
-                        {
-                            Con("Server ist nicht erreichbar.");
-                            db.DB_DELETE_FROM("vsy_servers", "PORT = '"+new_p+"'");
-                            if (!found)
-                            {
-                                found = true;
-                                port = new_p;
-                            }
-                        }
-                    }
-                    else
+                    db.DB_Connect(host, datenbank, userid, password);
+                    label_db_status.Text = "Server ist mit Datenbank verbunden";
+                    try
                     {
-                        if (!found)
+
+                        // Gucken ob Server vorhanden sind
+                        db.DB_CREATE_DATABASE("test");
+
+                        // Server informationen
+                        IPAddress ip = IPAddress.Parse(tb_sv_ip.Text);
+                        int port = (int)nud_sv_port.Value;
+                        int mc = (int)nud_sv_max_clients.Value;
+
+                        //db.DB_CREATE_TABLE("vsy_servers", "uid int not null auto_increment primary key, IP TEXT, PORT INT");
+                        //db.DB_INSERT_INTO("vsy_servers", "IP, PORT", "'127.0.0.1', '1234'");
+                        /*Dictionary<int, string> servers = db.DB_Select("vsy_servers", "*", "");
+                        foreach(KeyValuePair<int, string> server in servers)
                         {
-                            found = true;
-                            port = new_p;
+                            Con(server.Value);
+                        }*/
+
+                        int range = (int)nud_sv_range.Value;
+                        int new_port = port;
+                        bool found = false;
+                        for (int new_p = port; new_p < port + range; new_p++)
+                        {
+                            //Con("i: " + i + " Port: " + new_p);
+                            DataTable result = db.DB_Select("vsy_servers", "*", "PORT = '" + new_p + "'");
+
+                            if (result != null && result.Rows.Count > 0)
+                            {
+                                Con("Server (" + new_p + ") in Datenbank gefunden!");
+                                Con("TEST: |"+ result.Rows.Count + "|");
+                                foreach (DataRow row in result.Rows)
+                                {
+                                    for (int i = 0; i < row.ItemArray.Length; i++)
+                                    {
+                                        Con(row.ItemArray[i].ToString());
+                                    }
+                                }
+
+                                if (is_reachable(ip, new_p))
+                                {
+                                    Con("Server ("+ new_p + ") ist erreichbar.");
+                                }
+                                else
+                                {
+                                    Con("Server (" + new_p + ") ist nicht erreichbar.");
+                                    db.DB_DELETE_FROM("vsy_servers", "PORT = '" + new_p + "'");
+                                    if (!found)
+                                    {
+                                        found = true;
+                                        port = new_p;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (!found)
+                                {
+                                    found = true;
+                                    port = new_p;
+                                }
+                            }
                         }
+                        nud_sv_port.Text = port.ToString();
+                        db.DB_INSERT_INTO("vsy_servers", "IP, PORT", "'" + ip + "', '" + port + "'");
+
+                        Con("Server wird gestartet(IP: " + ip + " Port: " + port + " MaxClients: " + mc + ").");
+
+                        IPEndPoint ipe = new IPEndPoint(ip, port);
+                        server = new Server(ipe);
+                        server.RegisterForCommand(Commands.SendMsg, new Action<byte[]>(GetMsg));
+                        server.Start(mc);
+
+                        Con("Server wurde gestartet.");
+
+                        timer.Enabled = true;
+                        label_sv_status.Text = "Server ist am laufen.";
+                        btn_action.Text = "Stoppen";
+                        btn_action.BackColor = Color.Red;
+                    }
+                    catch (Exception ex)
+                    {
+                        label_sv_status.Text = "Starten des Servers fehlgeschlagen.";
+                        Con("Starten des Servers fehlgeschlagen");
                     }
                 }
-                nud_sv_port.Text = port.ToString();
-                db.DB_INSERT_INTO("vsy_servers", "IP, PORT", "'" + ip + "', '" + port + "'");
-
-                Con("Server wird gestartet(IP: "+ip+" Port: "+port+" MaxClients: "+mc+").");
-
-                IPEndPoint ipe = new IPEndPoint(ip, port);
-                server = new Server(ipe);
-                server.RegisterForCommand(Commands.SendMsg, new Action<byte[]>(GetMsg));
-                server.Start(mc);
-
-                Con("Server wurde gestartet.");
-
-                timer.Enabled = true;
-                label_sv_status.Text = "Server ist am laufen.";
-                btn_action.Text = "Stoppen";
+                catch(Exception ex)
+                {
+                    label_db_status.Text = "Verbindung zur Datenbank fehlgeschlagen.";
+                    Con("Verbindung zur Datenbank fehlgeschlagen");
+                }
             }
             else
             {
@@ -171,6 +209,7 @@ namespace ChatProjekt
 
                 label_sv_status.Text = "Bereit";
                 btn_action.Text = "Starten";
+                btn_action.BackColor = Color.Green;
             }
         }
 

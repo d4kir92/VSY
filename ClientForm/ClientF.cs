@@ -40,8 +40,8 @@ namespace ClientForm
         {
             string text = ASCIIEncoding.ASCII.GetString(Data);
             string cl_name = tb_name.Text;
-            Con(cl_name);
-            text = text.Replace(cl_name, "Du");
+            text = text.Replace(cl_name+":", "Du:");
+            text = text.Replace(cl_name + " ist", "Du bist");
             Con(text);
             tb_chat.AppendText(text + Environment.NewLine);
         }

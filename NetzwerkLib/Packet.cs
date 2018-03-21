@@ -75,9 +75,9 @@ namespace NetzwerkLib
             byte[] sizeBuffer = new byte[4];
             int recBytes = 0;
 
-            socket.ReceiveTimeout = Timeout;
             try
             {
+                socket.ReceiveTimeout = Timeout;
                 while ((recBytes += socket.Receive(sizeBuffer, recBytes, sizeBuffer.Length - recBytes, SocketFlags.None)) != 4)
                 {
 

@@ -42,6 +42,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.tb_db_database = new System.Windows.Forms.TextBox();
             this.label_db_status = new System.Windows.Forms.Label();
             this.tb_db_userid = new System.Windows.Forms.TextBox();
@@ -55,6 +57,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tb_sv_ip = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud_sv_range)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_sv_port)).BeginInit();
@@ -63,16 +66,21 @@
             // 
             // btn_action
             // 
+            this.btn_action.BackColor = System.Drawing.Color.Red;
+            this.btn_action.ForeColor = System.Drawing.SystemColors.WindowText;
             this.btn_action.Location = new System.Drawing.Point(6, 58);
             this.btn_action.Name = "btn_action";
             this.btn_action.Size = new System.Drawing.Size(286, 33);
             this.btn_action.TabIndex = 0;
             this.btn_action.Text = "ACTION";
-            this.btn_action.UseVisualStyleBackColor = true;
+            this.btn_action.UseVisualStyleBackColor = false;
             this.btn_action.Click += new System.EventHandler(this.btn_action_Click);
             // 
             // tb_chat
             // 
+            this.tb_chat.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tb_chat.BackColor = System.Drawing.Color.LightGray;
             this.tb_chat.Location = new System.Drawing.Point(12, 132);
             this.tb_chat.Name = "tb_chat";
@@ -92,6 +100,8 @@
             // 
             // tb_write
             // 
+            this.tb_write.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tb_write.Location = new System.Drawing.Point(13, 526);
             this.tb_write.Multiline = false;
             this.tb_write.Name = "tb_write";
@@ -102,6 +112,7 @@
             // 
             // btn_send
             // 
+            this.btn_send.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_send.Location = new System.Drawing.Point(497, 526);
             this.btn_send.Name = "btn_send";
             this.btn_send.Size = new System.Drawing.Size(75, 23);
@@ -137,7 +148,7 @@
             // 
             this.label1.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(132, 16);
+            this.label1.Location = new System.Drawing.Point(140, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 11;
@@ -146,7 +157,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 16);
+            this.label2.Location = new System.Drawing.Point(3, 17);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 13);
             this.label2.TabIndex = 12;
@@ -155,7 +166,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 55);
+            this.label3.Location = new System.Drawing.Point(3, 55);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 13);
             this.label3.TabIndex = 13;
@@ -172,6 +183,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.numericUpDown1);
             this.groupBox1.Controls.Add(this.tb_db_database);
             this.groupBox1.Controls.Add(this.label_db_status);
             this.groupBox1.Controls.Add(this.tb_db_userid);
@@ -188,11 +201,37 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "MYSQL";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(84, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(26, 13);
+            this.label7.TabIndex = 27;
+            this.label7.Text = "Port";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(87, 32);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(50, 20);
+            this.numericUpDown1.TabIndex = 26;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1234,
+            0,
+            0,
+            0});
+            // 
             // tb_db_database
             // 
-            this.tb_db_database.Location = new System.Drawing.Point(136, 33);
+            this.tb_db_database.Location = new System.Drawing.Point(143, 33);
             this.tb_db_database.Name = "tb_db_database";
-            this.tb_db_database.Size = new System.Drawing.Size(116, 20);
+            this.tb_db_database.Size = new System.Drawing.Size(109, 20);
             this.tb_db_database.TabIndex = 25;
             this.tb_db_database.Text = "vsy_servers";
             // 
@@ -217,7 +256,7 @@
             // 
             this.tb_db_host.Location = new System.Drawing.Point(6, 32);
             this.tb_db_host.Name = "tb_db_host";
-            this.tb_db_host.Size = new System.Drawing.Size(123, 20);
+            this.tb_db_host.Size = new System.Drawing.Size(75, 20);
             this.tb_db_host.TabIndex = 20;
             this.tb_db_host.Text = "localhost";
             // 
@@ -338,6 +377,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ServerF_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud_sv_range)).EndInit();
@@ -350,7 +390,6 @@
         #endregion
 
         private System.Windows.Forms.Button btn_action;
-        private System.Windows.Forms.RichTextBox tb_chat;
         private System.Windows.Forms.Label label_sv_status;
         private System.Windows.Forms.RichTextBox tb_write;
         private System.Windows.Forms.Button btn_send;
@@ -374,6 +413,9 @@
         private System.Windows.Forms.TextBox tb_db_database;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown nud_sv_range;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        public System.Windows.Forms.RichTextBox tb_chat;
     }
 }
 
