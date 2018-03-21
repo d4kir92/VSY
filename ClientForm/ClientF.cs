@@ -33,7 +33,9 @@ namespace ClientForm
         private void Client_Load(object sender, EventArgs e)
         {
             btn_action.Text = "Verbinden";
+            btn_action.BackColor = Color.Green;
             label_status.Text = "Bereit";
+            label_status.BackColor = Color.Green;
         }
 
         private void GetMsg( byte[] Data )
@@ -54,7 +56,9 @@ namespace ClientForm
                 try
                 {
                     btn_action.Text = "...";
+                    btn_action.BackColor = Color.Yellow;
                     label_status.Text = "Am verbinden";
+                    label_status.BackColor = Color.Yellow;
 
                     client = new Client();
                     IPAddress ip = IPAddress.Parse(tb_ip.Text);
@@ -79,14 +83,18 @@ namespace ClientForm
                     }
 
                     btn_action.Text = "Trennen";
+                    btn_action.BackColor = Color.Red;
                     label_status.Text = "Verbunden";
+                    label_status.BackColor = Color.Green;
 
                     timer1.Enabled = true;
                 }
                 catch(Exception ex)
                 {
                     btn_action.Text = "Verbinden";
+                    btn_action.BackColor = Color.Green;
                     label_status.Text = "Server offline, retry!";
+                    label_status.BackColor = Color.Red;
                     Con("EXCEPTION: " + ex.ToString());
                     running = false;
                 }
@@ -95,7 +103,9 @@ namespace ClientForm
             {
                 running = !running;
                 btn_action.Text = "Verbinden";
+                btn_action.BackColor = Color.Green;
                 label_status.Text = "Bereit";
+                label_status.BackColor = Color.Green;
 
                 client.Disconnect(false);
             }

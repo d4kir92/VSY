@@ -34,7 +34,9 @@ namespace ChatProjekt
         private void Server_Load(object sender, EventArgs e)
         {
             label_sv_status.Text = "Bereit";
+            label_sv_status.BackColor = Color.Green;
             label_db_status.Text = "Bereit";
+            label_db_status.BackColor = Color.Green;
             btn_action.Text = "Starten";
             btn_action.BackColor = Color.Green;
         }
@@ -87,7 +89,9 @@ namespace ChatProjekt
                 running = !running;
 
                 label_sv_status.Text = "Server am hochfahren";
+                label_sv_status.BackColor = Color.Yellow;
                 label_db_status.Text = "Server mit Datenbank verbinden";
+                label_db_status.BackColor = Color.Yellow;
                 btn_action.Text = "...";
                 btn_action.BackColor = Color.Yellow;
 
@@ -103,6 +107,7 @@ namespace ChatProjekt
 
                     db.DB_Connect(host, datenbank, userid, password);
                     label_db_status.Text = "Server ist mit Datenbank verbunden";
+                    label_db_status.BackColor = Color.Green;
                     try
                     {
 
@@ -133,13 +138,26 @@ namespace ChatProjekt
                             if (result != null && result.Rows.Count > 0)
                             {
                                 Con("Server (" + new_p + ") in Datenbank gefunden!");
-                                Con("TEST: |"+ result.Rows.Count + "|");
+                                string zeile = "";
                                 foreach (DataRow row in result.Rows)
                                 {
+                                    zeile = "Server (" + new_p + ") | ";
                                     for (int i = 0; i < row.ItemArray.Length; i++)
                                     {
-                                        Con(row.ItemArray[i].ToString());
+                                        if (i == 0)
+                                        {
+                                            zeile = zeile + "UID: ";
+                                        }else if (i == 1)
+                                        {
+                                            zeile = zeile + " | IP: ";
+                                        }
+                                        else if (i == 2)
+                                        {
+                                            zeile = zeile + " | Port: ";
+                                        }
+                                        zeile = zeile + row.ItemArray[i].ToString();
                                     }
+                                    Con(zeile);
                                 }
 
                                 if (is_reachable(ip, new_p))
@@ -180,18 +198,21 @@ namespace ChatProjekt
 
                         timer.Enabled = true;
                         label_sv_status.Text = "Server ist am laufen.";
+                        label_sv_status.BackColor = Color.Green;
                         btn_action.Text = "Stoppen";
                         btn_action.BackColor = Color.Red;
                     }
                     catch (Exception ex)
                     {
                         label_sv_status.Text = "Starten des Servers fehlgeschlagen.";
+                        label_sv_status.BackColor = Color.Red;
                         Con("Starten des Servers fehlgeschlagen");
                     }
                 }
                 catch(Exception ex)
                 {
                     label_db_status.Text = "Verbindung zur Datenbank fehlgeschlagen.";
+                    label_db_status.BackColor = Color.Red;
                     Con("Verbindung zur Datenbank fehlgeschlagen");
                 }
             }
@@ -202,12 +223,14 @@ namespace ChatProjekt
                 Con("Server wird gestoppt.");
 
                 label_sv_status.Text = "Am stoppen";
+                label_sv_status.BackColor = Color.Yellow;
                 btn_action.Text = "...";
 
                 server.Stop();
                 Con("Server wurde gestoppt.");
 
                 label_sv_status.Text = "Bereit";
+                label_sv_status.BackColor = Color.Green;
                 btn_action.Text = "Starten";
                 btn_action.BackColor = Color.Green;
             }
